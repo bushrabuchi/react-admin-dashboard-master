@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -22,10 +22,18 @@ import SchoolIcon from "@mui/icons-material/School";
 const Item = ({ title, to, icon, selected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const navigate = useNavigate();
+
   return (
     <MenuItem
-      component={<Link to={to} />}
       active={selected}
+      onClick={() => navigate(to)}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          navigate(to);
+        }
+      }}
       style={{
         color: colors.grey[100],
       }}
