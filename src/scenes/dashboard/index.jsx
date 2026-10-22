@@ -18,7 +18,7 @@ const Dashboard = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box m="20px">
+    <Box className="dashboard-page" m={{ xs: "16px", sm: "24px", lg: "32px" }}>
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
@@ -27,10 +27,13 @@ const Dashboard = () => {
           <Button
             sx={{
               backgroundColor: colors.blueAccent[700],
-              color: colors.grey[100],
+              color: "#ffffff",
               fontSize: "14px",
               fontWeight: "bold",
               padding: "10px 20px",
+              borderRadius: "10px",
+              textTransform: "none",
+              boxShadow: "0 6px 14px rgba(52, 68, 180, 0.18)",
             }}
           >
             <DownloadOutlinedIcon sx={{ mr: "10px" }} />
@@ -41,10 +44,11 @@ const Dashboard = () => {
 
       {/* GRID & CHARTS */}
       <Box
+        className="dashboard-grid"
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="140px"
-        gap="20px"
+        gap={{ xs: "14px", sm: "18px", lg: "20px" }}
       >
         {/* ROW 1 */}
         <Box
